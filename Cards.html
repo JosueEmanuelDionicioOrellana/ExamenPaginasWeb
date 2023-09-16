@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CardsStyle.css">
+    <title>Cards</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh;
+            background-color: gray;
+        }
+
+        .div1, .div2, .div3, .divVariado {
+            flex: 1;
+            border: 2px solid #000;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100px;
+        } 
+
+        .div1 {
+            background-color: #FFD700;
+        }
+
+        .div2 {
+            background-color: #FF5733;
+        }
+
+        .div3 {
+            background-color: #6EFF33;
+        }
+
+        .div4 {
+            background-color: #61bddf;
+        }
+
+        .boton{
+            padding: 5px;
+        }
+
+        .creacion{
+            margin: 10px;
+            padding: 10px;
+            padding-bottom: 10px;
+            height: 50px;
+        }
+
+        .tarjeta {
+            text-align: center;
+            padding: 5px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            max-width: 100%;
+            width: auto;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .tarjeta h1{
+            text-align: center;
+        }
+
+        .tarjeta img{
+            height: 100px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <script src="System.js"></script>
+    <div class="div1" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="tarjeta" id="columna1" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #1</h3>
+            <p>Contenido</p>
+            <img src="Img/carro1.png" draggable="false">
+        </div>
+        <div class="tarjeta" id="columna2" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #2</h3>
+            <p>Contenido</p>
+            <img src="Img/carro2.png" draggable="false">
+        </div>
+    </div>
+    <div class="div2" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" >
+        <div class="tarjeta" id="columna3" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #1</h3>
+            <p>Contenido</p>
+            <img src="Img/carro3.png" draggable="false">
+        </div>
+        <div class="tarjeta" id="columna4" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #2</h3>
+            <p>Contenido</p>
+            <img src="Img/carro4.png" draggable="false">
+        </div>
+    </div>
+    <div class="div3" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="tarjeta" id="columna5" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #1</h3>
+            <p>Contenido</p>
+            <img src="Img/carro5.png" draggable="false">
+        </div>
+        <div class="tarjeta" id="columna6" draggable="true" ondragstart="drag(event)" >
+            <h3>Titulo #2</h3>
+            <p>Contenido</p>
+            <img src="Img/carro6.png" draggable="false">
+        </div>
+    </div>
+<script>
+    function allowDrop(ev){
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var targetElement = ev.target;
+
+        // Buscar el ancestro con la clase adecuada (div1, div2 o div3)
+        while (!targetElement.classList.contains("div1") &&
+            !targetElement.classList.contains("div2") &&
+            !targetElement.classList.contains("div3")) {
+            targetElement = targetElement.parentNode;
+        }
+
+        // Solo permitir soltar en los elementos con clase div1, div2 o div3
+        if (targetElement.classList.contains("div1") ||
+            targetElement.classList.contains("div2") ||
+            targetElement.classList.contains("div3")) {
+            targetElement.appendChild(document.getElementById(data));
+        }
+    }
+</script>
+</body>
+</html>

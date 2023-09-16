@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<style>
+     body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #menu {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      width: 300px;
+    }
+    #menu{
+        margin-top: 50px;
+        margin-left: 550px;
+    }
+
+    #menu button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    #menu button:hover {
+      background-color: #2980b9;
+    }
+</style>
+<body>
+    <div id="menu">
+        <button onclick="window.location.href='layout.html'">Layout</button>
+        <button onclick="window.location.href='Formulario.html'">Formulario</button>
+        <button onclick="window.location.href='Cards.html'">Cards</button>
+        <button onclick="contarYCambiarColor()">Carga Dinamica</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function contarYCambiarColor() {
+    let count = 0;
+    const intervalId = setInterval(() => {
+      count++;
+      if (count <= 5) {
+        console.log(count);
+      } else {
+        clearInterval(intervalId);
+        cambiarColorFondo();
+      }
+    }, 1000);
+  }
+
+  function cambiarColorFondo() {
+    var colorAleatorio = "#" + Math.floor(Math.random()*16777215).toString(16);
+    document.body.style.backgroundColor = colorAleatorio;
+  }
+
+</script>
